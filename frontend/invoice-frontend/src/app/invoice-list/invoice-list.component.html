@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-header">Invoice List</div>
+    <div class="card-body p-0">
+      <table class="table table-bordered m-0">
+        <thead class="table-light">
+          <tr>
+            <th>Invoice Number</th>
+            <th>Date</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let invoice of invoices">
+            <td>{{ invoice.invoiceNumber }}</td>
+            <td>{{ invoice.date }}</td>
+            <td>{{ invoice.amount | currency }}</td>
+          </tr>
+          <tr *ngIf="invoices.length === 0">
+            <td colspan="3" class="text-center">No invoices yet.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

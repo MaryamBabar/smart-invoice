@@ -1,0 +1,7 @@
+<div class="container py-5">
+  <h1 class="mb-4">Invoice Management</h1>
+
+  <app-invoice-form (invoiceCreated)="handleInvoiceCreated($event)"></app-invoice-form>
+
+  <app-invoice-list [invoices]="invoices"></app-invoice-list>
+</div>
