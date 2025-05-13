@@ -13,22 +13,43 @@ export class InvoiceFormComponent {
   invoice = {
     invoiceNumber: '',
     date: '',
-    amount: 0
+    dueDate: '',
+    clientName: '',
+    clientEmail: '',
+    clientAddress: '',
+    amount: 0,
+    taxRate: 0,
+    paymentTerms: '',
+    status:'sent',
+    
   };
+    // List of available statuses in the dropdown
+    statuses = ['sent', 'viewed', 'paid', 'overdue'];
 
   @Output() invoiceCreated = new EventEmitter<any>();
 
   createInvoice() {
-    if (!this.invoice.invoiceNumber || !this.invoice.date || this.invoice.amount <= 0) {
-      alert('Please fill all fields');
+    const { invoiceNumber, date, clientName, amount } = this.invoice;
+
+    if (!invoiceNumber || !date || !clientName || amount <= 0) {
+      alert('Please fill all required fields: Invoice Number, Date, Client Name, and Amount');
       return;
     }
 
     this.invoiceCreated.emit({ ...this.invoice });
+
+    // Reset form
     this.invoice = {
       invoiceNumber: '',
       date: '',
-      amount: 0
+      dueDate: '',
+      clientName: '',
+      clientEmail: '',
+      clientAddress: '',
+      amount: 0,
+      taxRate: 0,
+      paymentTerms: '',
+      status: 'sent' // Reset to default status after creation
     };
   }
 }

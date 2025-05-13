@@ -1,0 +1,67 @@
+<div *ngIf="invoice" class="card mt-4 shadow-sm" id="invoice-detail">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">🧾 Invoice Summary</h5>
+      <span class="badge bg-light text-dark px-3 py-2">{{ invoice.status }}</span>
+    </div>
+  
+    <div class="card-body">
+      <!-- Header -->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <h6 class="text-muted">Invoice Number</h6>
+          <p class="fw-semibold">{{ invoice.invoiceNumber }}</p>
+  
+          <h6 class="text-muted">Invoice Date</h6>
+          <p>{{ invoice.date | date: 'longDate' }}</p>
+  
+          <h6 class="text-muted">Due Date</h6>
+          <p>{{ invoice.dueDate | date: 'longDate' }}</p>
+        </div>
+  
+        <div class="col-md-6 text-end">
+          <h6 class="text-muted">Client</h6>
+          <p class="mb-1 fw-semibold">{{ invoice.clientName }}</p>
+          <p class="mb-1">{{ invoice.clientEmail }}</p>
+          <p class="mb-0">{{ invoice.clientAddress }}</p>
+        </div>
+      </div>
+  
+      <hr />
+  
+      <!-- Amount Section -->
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <h6 class="text-muted">Base Amount</h6>
+          <p>{{ invoice.amount | currency }}</p>
+        </div>
+        <div class="col-md-4">
+          <h6 class="text-muted">Tax Rate</h6>
+          <p>{{ invoice.taxRate }}%</p>
+        </div>
+        <div class="col-md-4">
+          <h6 class="text-muted">Total (incl. Tax)</h6>
+          <p class="fw-bold text-success">
+            {{ invoice.amount + (invoice.amount * invoice.taxRate / 100) | currency }}
+          </p>
+        </div>
+      </div>
+  
+      <!-- Payment Terms -->
+      <div class="mt-4">
+        <h6 class="text-muted">Payment Terms</h6>
+        <p>{{ invoice.paymentTerms || 'N/A' }}</p>
+      </div>
+    </div>
+  
+    <div class="card-footer text-muted text-end small">
+      Last updated: {{ today | date:'short' }}
+    </div>
+  </div>
+  
+  <!-- PDF Download Button -->
+  <div class="text-end mt-3">
+    <button class="btn btn-outline-primary" (click)="downloadPDF()">
+      ⬇️ Download PDF
+    </button>
+  </div>
+  

@@ -3,5 +3,10 @@
 
   <app-invoice-form (invoiceCreated)="handleInvoiceCreated($event)"></app-invoice-form>
 
-  <app-invoice-list [invoices]="invoices"></app-invoice-list>
+  <app-invoice-list 
+    [invoices]="invoices" 
+    (invoiceSelected)="handleInvoiceSelected($event)">
+  </app-invoice-list>
+
+  <app-invoice-detail [invoice]="selectedInvoice"></app-invoice-detail>
 </div>
