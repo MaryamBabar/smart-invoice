@@ -1,74 +1,164 @@
 <div class="card shadow-sm mb-4">
-    <div class="card-header bg-primary text-white fw-bold">Create Invoice</div>
-    <div class="card-body">
-      <form (ngSubmit)="createInvoice()" #form="ngForm">
-        
-        <!-- Invoice Details -->
-        <h5 class="mb-3">🧾 Invoice Details</h5>
-        <div class="row">
-          <div class="col-md-4 mb-3">
-            <label for="invoiceNumber" class="form-label">Invoice Number</label>
-            <input type="text" id="invoiceNumber" class="form-control" [(ngModel)]="invoice.invoiceNumber" name="invoiceNumber" required />
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="date" class="form-label">Invoice Date</label>
-            <input type="date" id="date" class="form-control" [(ngModel)]="invoice.date" name="date" required />
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="dueDate" class="form-label">Due Date</label>
-            <input type="date" id="dueDate" class="form-control" [(ngModel)]="invoice.dueDate" name="dueDate" />
-          </div>
+  <div class="card-header bg-primary text-white fw-bold">Create Invoice</div>
+  <div class="card-body">
+    <form (ngSubmit)="createInvoice()" #form="ngForm">
+
+      <!-- Invoice Details -->
+      <h5 class="mb-3">🧾 Invoice Details</h5>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="invoiceNumber" class="form-label">Invoice Number</label>
+          <input
+            type="text"
+            id="invoiceNumber"
+            class="form-control"
+            [(ngModel)]="invoice.invoiceNumber"
+            name="invoiceNumber"
+            required />
         </div>
-  
-        <!-- Client Info -->
-        <h5 class="mt-4 mb-3">👤 Client Information</h5>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="clientName" class="form-label">Client Name</label>
-            <input type="text" id="clientName" class="form-control" [(ngModel)]="invoice.clientName" name="clientName" required />
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="clientEmail" class="form-label">Client Email</label>
-            <input type="email" id="clientEmail" class="form-control" [(ngModel)]="invoice.clientEmail" name="clientEmail" />
-          </div>
-          <div class="col-md-12 mb-3">
-            <label for="clientAddress" class="form-label">Client Address</label>
-            <textarea id="clientAddress" rows="2" class="form-control" [(ngModel)]="invoice.clientAddress" name="clientAddress"></textarea>
-          </div>
+        <div class="col-md-4 mb-3">
+          <label for="date" class="form-label">Invoice Date</label>
+          <input
+            type="date"
+            id="date"
+            class="form-control"
+            [(ngModel)]="invoice.date"
+            name="date"
+            required />
         </div>
-  
-        <!-- Item or Amount -->
-        <h5 class="mt-4 mb-3">💼 Invoice Summary</h5>
-        <div class="row">
-          <div class="col-md-4 mb-3">
-            <label for="amount" class="form-label">Total Amount</label>
-            <input type="number" id="amount" class="form-control" [(ngModel)]="invoice.amount" name="amount" required />
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="taxRate" class="form-label">Tax Rate (%)</label>
-            <input type="number" id="taxRate" class="form-control" [(ngModel)]="invoice.taxRate" name="taxRate" placeholder="e.g. 10" />
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="paymentTerms" class="form-label">Payment Terms</label>
-            <input type="text" id="paymentTerms" class="form-control" [(ngModel)]="invoice.paymentTerms" name="paymentTerms" placeholder="e.g. Net 30" />
-          </div>
+        <div class="col-md-4 mb-3">
+          <label for="dueDate" class="form-label">Due Date</label>
+          <input
+            type="date"
+            id="dueDate"
+            class="form-control"
+            [(ngModel)]="invoice.dueDate"
+            name="dueDate" />
         </div>
-  
-        <!-- Invoice Status Dropdown -->
-        <h5 class="mt-4 mb-3">📊 Invoice Status</h5>
-        <div class="mb-3">
-          <label for="status" class="form-label">Select Status</label>
-          <select id="status" class="form-control" [(ngModel)]="invoice.status" name="status">
-            <option *ngFor="let status of statuses" [value]="status">{{ status | titlecase }}</option>
-          </select>
+      </div>
+
+      <!-- Client Info -->
+      <h5 class="mt-4 mb-3">👤 Client Information</h5>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="clientName" class="form-label">Client Name</label>
+          <input
+            type="text"
+            id="clientName"
+            class="form-control"
+            [(ngModel)]="invoice.clientName"
+            name="clientName"
+            required />
         </div>
-  
-        <!-- Submit Button -->
-        <div class="text-end mt-4">
-          <button type="submit" class="btn btn-success px-4">🧾 Create Invoice</button>
+        <div class="col-md-6 mb-3">
+          <label for="clientEmail" class="form-label">Client Email</label>
+          <input
+            type="email"
+            id="clientEmail"
+            class="form-control"
+            [(ngModel)]="invoice.clientEmail"
+            name="clientEmail" />
         </div>
-  
-      </form>
-    </div>
+        <div class="col-md-12 mb-3">
+          <label for="clientAddress" class="form-label">Client Address</label>
+          <textarea
+            id="clientAddress"
+            rows="2"
+            class="form-control"
+            [(ngModel)]="invoice.clientAddress"
+            name="clientAddress">
+          </textarea>
+        </div>
+      </div>
+
+      <!-- Invoice Summary -->
+      <h5 class="mt-4 mb-3">💼 Invoice Summary</h5>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="amount" class="form-label">Total Amount</label>
+          <input
+            type="number"
+            id="amount"
+            class="form-control"
+            [(ngModel)]="invoice.amount"
+            name="amount"
+            required
+            (ngModelChange)="updateTaxRateAndPaymentTerms()" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="taxRate" class="form-label">Tax Rate (%)</label>
+          <input
+            type="number"
+            id="taxRate"
+            class="form-control"
+            [(ngModel)]="invoice.taxRate"
+            name="taxRate"
+            readonly />
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="paymentTerms" class="form-label">Payment Terms</label>
+          <input
+            type="text"
+            id="paymentTerms"
+            class="form-control"
+            [(ngModel)]="invoice.paymentTerms"
+            name="paymentTerms"
+            readonly />
+        </div>
+      </div>
+
+      <!-- Calculated Outputs -->
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="totalTax" class="form-label">Total Tax (€)</label>
+          <input
+            type="number"
+            id="totalTax"
+            class="form-control"
+            [value]="invoice.totalTax"
+            readonly />
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="totalAmountWithoutTax" class="form-label">Total Amount (Without Tax) (€)</label>
+          <input
+            type="number"
+            id="totalAmountWithoutTax"
+            class="form-control"
+            [value]="invoice.totalAmountWithoutTax"
+            readonly />
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="dueDate" class="form-label">Payment Due Date</label>
+          <input
+            type="text"
+            id="dueDate"
+            class="form-control"
+            [value]="invoice.dueDate"
+            readonly />
+        </div>
+      </div>
+
+      <!-- Invoice Status -->
+      <h5 class="mt-4 mb-3">📊 Invoice Status</h5>
+      <div class="mb-3">
+        <label for="status" class="form-label">Select Status</label>
+        <select
+          id="status"
+          class="form-control"
+          [(ngModel)]="invoice.status"
+          name="status">
+          <option *ngFor="let status of statuses" [value]="status">
+            {{ status | titlecase }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Submit -->
+      <div class="text-end mt-4">
+        <button type="submit" class="btn btn-success px-4">🧾 Create Invoice</button>
+      </div>
+    </form>
   </div>
-  
+</div>

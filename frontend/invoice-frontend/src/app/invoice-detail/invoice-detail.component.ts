@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import html2pdf from 'html2pdf.js';
 
-
 @Component({
   selector: 'app-invoice-detail',
   standalone: true,
@@ -13,6 +12,12 @@ import html2pdf from 'html2pdf.js';
 export class InvoiceDetailComponent {
   @Input() invoice: any;
   today: Date = new Date();
+
+  // Method to convert DD/MM/YYYY string to a Date object
+  convertToDate(dateString: string): Date {
+    const [day, month, year] = dateString.split('/');
+    return new Date(+year, +month - 1, +day);
+  }
 
   downloadPDF() {
     const element = document.getElementById('invoice-detail');
